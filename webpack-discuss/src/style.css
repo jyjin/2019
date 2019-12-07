@@ -1,0 +1,9 @@
+@import "./index.css";
+body{
+  background: #1237dd;
+}
+
+.hello {
+  color: red;
+  background: url('./pikaqiu.jpeg');
+}

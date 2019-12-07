@@ -1,0 +1,21 @@
+{
+  "name": "webpack-discuss",
+  "version": "1.0.0",
+  "private": true,
+  "author": "jyjin",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "test": ""
+  },
+  "dependencies": {
+    "lodash": "^4.17.14",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  },
+  "devDependencies": {
+    "css-loader": "^3.0.0",
+    "file-loader": "^4.0.0",
+    "style-loader": "^0.23.1"
+  }
+}

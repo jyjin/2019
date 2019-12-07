@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件拦截测试-jyjin</title>
+</head>
+
+<body>
+  <input id="preventChild" type="checkbox" checked>勾选阻止子节点获取事件</input>
+  <div id="parent">
+    人最宝贵的是生命，人的生命只有一次，
+    <a id="child" style="margin-left:10px;" target="_blank" href="https://www.baidu.com">人的一生应当这样度过</a>
+    不因虚度年华而悔恨，不因碌碌无为而羞愧
+  </div>
+
+  <div id="test"></div>
+  <button id='btn'>点我</button>
+  <script>
+    var parent = document.getElementById('parent');
+    var child = document.getElementById('child');
+    var preventChild = document.getElementById('preventChild');
+
+    // 父元素
+    parent.addEventListener('click', function (event) {
+      if (preventChild.checked) {
+        event.stopPropagation();
+      }
+      // event.preventDefault();
+      var targetText;
+      var targetEle = null
+      if (event.target === parent) {
+        targetText = '父亲';
+      }
+      if (event.target === child) {
+        targetEle = event.target
+        targetText = '儿子';
+      }
+      console.log('父元素点击事件检测到是： ' + targetText);
+      if (targetEle) {
+        console.log('获取到子元素：', targetEle)
+      }
+    }, true);
+
+    // // 子元素
+    // child.addEventListener('click', function (event) {
+    //   console.log('子元素直接点击事件');
+    // });
+
+    // // 子元素
+    // child.addEventListener('click', function (event) {
+    //   console.log('点222');
+    // }, true);
+
+
+    var myEvent = new Event('click')
+
+
+    document.getElementById('test').addEventListener('click', function (e, data) {
+      console.log('jyjin == ', e, data)
+    })
+
+    document.getElementById('btn').addEventListener('click', function () {
+      myEvent.data = 123
+      document.getElementById('test').dispatchEvent(myEvent)
+    })
+  </script>
+</body>
+
+</html>

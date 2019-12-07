@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试元素穿透</title>
+  <style>
+    .father {
+      position: relative;
+      width: 500px;
+      margin: 0 auto;
+      background-color: lightgreen;
+      min-height: 300px;
+      padding: 20px;
+      color: white;
+    }
+
+    .ele-across {
+      pointer-events: none;
+    }
+
+    .father p {
+      line-height: 24px;
+    }
+
+    .cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      z-index: 99;
+      background-color: rgba(0, 0, 0, 0.5)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div id='cover' class="cover"></div>
+    <p>我是一段测试文字，您能选中我吗？</p>
+  </div>
+  <button id='btn'>允许穿透</button>
+  <script>
+    function addClass(el, className) {
+      if (!~el.getAttribute('class').indexOf('class')) {
+        el.setAttribute('class', el.getAttribute('class') + ' ' + className)
+      }
+    }
+
+    function removeClass(el, className) {
+      el.setAttribute('class', el.getAttribute('class').replace(className, ''))
+    }
+
+    document.getElementById('btn').addEventListener("click", () => {
+      if (~document.getElementById('cover').getAttribute('class').indexOf('ele-across')) {
+        removeClass(document.getElementById('cover'), 'ele-across')
+        document.getElementById('btn').innerText = '允许穿透'
+      } else {
+        addClass(document.getElementById('cover'), 'ele-across')
+        document.getElementById('btn').innerText = '取消穿透'
+      }
+    })
+  </script>
+</body>
+
+</html>

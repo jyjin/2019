@@ -1,0 +1,19 @@
+{
+  "name": "node-commander",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node ./app.js -l",
+    "test-fullname": "node ./app.js --list",
+    "test-param": "node ./app.js -r home.js",
+    "test-multi": "node ./app.js -l -d",
+    "test-multi-short": "node ./app.js -ld",
+    "test-multi-param": "node ./app.js -lt aaaa"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0"
+  }
+}

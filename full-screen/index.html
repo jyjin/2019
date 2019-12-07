@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试全屏</title>
+  <script src="./screenfull.js"></script>
+</head>
+
+<body>
+  <div style="background:red;">红色</div>
+  <div style="background:blue;">蓝色</div>
+  <div id='green' style="background:green;">绿色<button id='button'>全屏</button></div>
+  <div style="background:yellow;">黄色</div>
+  <script>
+    var isFull = false
+    document.getElementById('button').addEventListener('click', () => {
+      var el = document.getElementById('green')
+      if (screenfull.enabled) {
+        if (screenfull.isFullscreen) {
+          console.log('退出')
+          screenfull.exit()
+          isFull = false
+        } else {
+          screenfull.request(el);
+          isFull = true
+          console.log('全屏')
+        }
+      }
+    });
+
+    // 全屏下 esc无效 非全选可以这么监听
+    // document.addEventListener('keyup', function (e) {
+    //   console.log(e.keyCode)
+    //   if (e.keyCode === 27) {
+    //     console.log('退出 by Esc')
+    //   }
+    // })
+
+    window.onresize = function () {
+      console.log('resize')
+      if (isFull) {
+        if (!screenfull.isFullscreen) {
+          console.log('退出 by resize')
+          isFull = false
+          //要执行的动作
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
