@@ -9,7 +9,7 @@
     "test": ""
   },
   "dependencies": {
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6"
   },
